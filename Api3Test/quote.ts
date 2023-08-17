@@ -1,6 +1,6 @@
 export interface PremiumOutput {
-  monthly_premium: number;
-  yearly_premium: number;
+  monthlyPrem: number;
+  yearlyPrem: number;
 }
 
 export interface ErrorResponse {
@@ -13,25 +13,24 @@ export function calculatePremium(
 ): PremiumOutput | ErrorResponse {
   try {
     // Convert carValue to a numerical value without '$' and ',' characters
-    const numericCarValue = parseFloat(
-      carValue.replace(/,/g, "").replace("$", "")
-    );
+    const numericCarValue = parseFloat(carValue.replace(/[$,]/g, ""));
 
     // Check if riskRating is between 1 and 5
+
     if (riskRating < 1 || riskRating > 5) {
       throw new Error("Risk rating must be between 1 and 5");
     }
 
     // Calculate yearly premium
-    const yearlyPremium = numericCarValue * (riskRating / 100);
+    const yearlyP = numericCarValue * (riskRating / 100);
 
     // Calculate monthly premium
-    const monthlyPremium = yearlyPremium / 12;
+    const monthlyP = yearlyP / 12;
 
     // Return the premium values as an object
     const premiumOutput: PremiumOutput = {
-      monthly_premium: parseFloat(monthlyPremium.toFixed(2)),
-      yearly_premium: parseFloat(yearlyPremium.toFixed(2)),
+      monthlyPrem: parseFloat(monthlyP.toFixed(2)),
+      yearlyPrem: parseFloat(yearlyP.toFixed(2)),
     };
 
     return premiumOutput;

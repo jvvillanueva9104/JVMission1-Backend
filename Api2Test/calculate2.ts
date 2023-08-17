@@ -3,7 +3,8 @@ export interface Input {
 }
 
 export interface Output {
-  risk_rating: number;
+  risk_rating?: number;
+  error?: string;
 }
 
 export interface ErrorOutput {
@@ -29,10 +30,14 @@ export function calculateRiskRating(
 
   let riskRating = 0;
   for (const keyword of keywords) {
-    const occurrences = (
+    const instances = (
       lowerCaseClaimHistory.match(new RegExp(`\\b${keyword}\\b`, "g")) || []
     ).length;
-    riskRating += occurrences;
+    riskRating += instances;
+  }
+
+  if (claim_history.trim() === "") {
+    return { error: "No claim history provided" };
   }
 
   if (riskRating === 0) {

@@ -1,6 +1,6 @@
 import calculate from "./calculate";
 
-describe("calculate", () => {
+describe("calculate the model and year based on user's input", () => {
   it("Calculates car value correctly for valid input", () => {
     const input: { model: string; year: number } = {
       model: "Civic",

@@ -39,11 +39,11 @@ describe("calculateRiskRating function", () => {
   });
 
   // Test Case 5: No Claim History Provided
-  it("returns the correct risk rating when no claim history is provided", () => {
+  it("returns an error when no claim history is provided", () => {
     const input: Input = {
       claim_history: "",
     };
-    const output: Output = { risk_rating: 1 };
+    const output: Output = { error: "No claim history provided" };
     expect(calculateRiskRating(input.claim_history)).toEqual(output);
   });
 });

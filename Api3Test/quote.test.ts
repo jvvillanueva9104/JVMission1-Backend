@@ -10,8 +10,8 @@ describe("calculatePremium function", () => {
     const carValue = "$20000";
     const riskRating = 3;
     const output: PremiumOutput = {
-      monthly_premium: 50,
-      yearly_premium: 600,
+      monthlyPrem: 50,
+      yearlyPrem: 600,
     };
     expect(calculatePremium(carValue, riskRating)).toEqual(output);
   });
@@ -21,8 +21,8 @@ describe("calculatePremium function", () => {
     const carValue = "$15,000";
     const riskRating = 4;
     const output: PremiumOutput = {
-      monthly_premium: 50,
-      yearly_premium: 600,
+      monthlyPrem: 50,
+      yearlyPrem: 600,
     };
     expect(calculatePremium(carValue, riskRating)).toEqual(output);
   });
@@ -38,12 +38,12 @@ describe("calculatePremium function", () => {
   });
 
   // Test Case 4: Invalid Car Value Format
-  it("returns error for invalid car value format", () => {
+  it("returns the same value even when there's no $ sign", () => {
     const carValue = "20000"; // Missing '$' character
     const riskRating = 2;
     const output: PremiumOutput = {
-      monthly_premium: 33.33, // Replace with the actual calculated values
-      yearly_premium: 400, // Replace with the actual calculated values
+      monthlyPrem: 33.33, // Replace with the actual calculated values
+      yearlyPrem: 400, // Replace with the actual calculated values
     };
     expect(calculatePremium(carValue, riskRating)).toEqual(output);
   });
